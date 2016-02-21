@@ -8,8 +8,10 @@ before_install:
     - docker build  -f test/Dockerfile  -t wordpress   .
 
 script:
-    - docker run -d --name wordpress  wordpress
-
+    - docker run -d --name wordpress wordpress
+    - IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' wordpress)  ;  echo http://$IP:80/wp-admin/install.php > url
+    - cat url  |  xargs -t -n 1 curl -v -o result-wordpress
+    - grep '<title>' result-wordpress
     - echo "==> Done."
 
 notifications:
