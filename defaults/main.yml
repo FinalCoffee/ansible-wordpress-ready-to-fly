@@ -1,0 +1,25 @@
+---
+
+#
+# variables needed to be defined in user's playbook
+#
+
+
+
+#
+# user-configurable defaults
+#
+
+
+    hostname: mywordpress
+    modify_hostname: true
+    wordpress_version: 4.4.2
+    wordpress_parent_path: /usr/share
+    wordpress_path:        "{{ wordpress_parent_path }}/wordpress"
+    wordpress_owner: www-data
+    wordpress_group: www-data
+    mysql_root_password: secretsecret
+    wordpress_db_name: wordpress
+    wordpress_db_user: wordpressuser
+    wordpress_db_password: wordpresspassword
+
