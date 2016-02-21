@@ -47,4 +47,6 @@ ENV    RESULT     /data/result-wordpress
 
 CMD service mysql start       && \
     service php7.0-fpm start  && \
-    service nginx start
+    service nginx start       && \
+    sleep 20  &&  \
+    tail -f /dev/null
