@@ -11,9 +11,8 @@ before_install:
 script:
     - docker run  -v $(pwd):/data  nginx_trusty
 
-
     - echo "==> Validating the test results..."
-    - grep '^Active connections' result-ubuntu14.04
+    - grep '<title>ANSIBLE_TEST' result-wordpress
 
 
 notifications:
