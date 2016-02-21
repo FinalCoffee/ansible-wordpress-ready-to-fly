@@ -5,7 +5,6 @@ services:
 before_install:
     - docker info
     - docker version
-
     - docker build  -f test/Dockerfile  -t wordpress_rtf   .
 
 script:
