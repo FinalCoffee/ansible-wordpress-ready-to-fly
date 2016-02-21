@@ -9,7 +9,7 @@ before_install:
 
 script:
     - docker run -v $(pwd):/data result-wordpress
-    - IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' wordpress) ; echo http://$IP:80/ > url
+    - IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' result-wordpress) ; echo http://$IP:80/ > url
     - cat url  |  xargs -t -n 1 curl -v -o result-wordpress
 
     - echo "==> Validating the test results..."
