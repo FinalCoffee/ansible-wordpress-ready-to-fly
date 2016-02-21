@@ -1,7 +1,7 @@
 Ansible wordpress php7 ready to fly
 ===
 
-[![Build Status](https://travis-ci.org/softarch-school/ansible-workshop.svg?branch=master)](https://travis-ci.org/softarch-school/ansible-workshop)
+[![Build Status](https://travis-ci.org/FinalCoffee/ansible-wordpress-ready-to-fly.svg?branch=master)](https://travis-ci.org/FinalCoffee/ansible-wordpress-ready-to-fly)
 
 ### Directory layout
 
