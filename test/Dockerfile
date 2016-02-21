@@ -22,13 +22,13 @@ MAINTAINER William Yeh <william.pjyeh@gmail.com>
 # fix policy-rc.d for Docker
 # @see http://www.monblocnotes.com/node/2057
 # @see http://askubuntu.com/a/365912
-RUN sed -i -e 's/exit\s\s*101/exit 0/' /usr/sbin/policy-rc.d
+# RUN sed -i -e 's/exit\s\s*101/exit 0/' /usr/sbin/policy-rc.d
 
 
 ENV PLAYBOOK setup.yml
-RUN ansible-playbook-wrapper -vvv --extra-vars "modify_hostname=false"
+RUN ansible-playbook-wrapper
 
-ENV PLAYBOOK init-wordpress.yml
+#ENV PLAYBOOK init-wordpress.yml
 #RUN ansible-playbook-wrapper -vvv --extra-vars `cat /tmp/WP_HOSTNAME`
 
 EXPOSE 80
@@ -47,7 +47,5 @@ VOLUME [ "/data" ]
 CMD service mysql start       && \
     service php7.0-fpm start  && \
     service nginx start       && \
-    IP=`head -n 1 /etc/hosts | sed 's/\t.*//'`                      && \
-    ansible-playbook-wrapper -vvv --extra-vars `echo hostname=$IP`  && \
-    #curl -v http://localhost/  > /data/result  && \
+    sleep 20  &&  \
     tail -f /dev/null
