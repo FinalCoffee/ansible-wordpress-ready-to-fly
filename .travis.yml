@@ -6,15 +6,10 @@ before_install:
     - docker info
     - docker version
 
-    - docker build  -f test/Dockerfile-ubuntu14.04  -t nginx_trusty   .
+    - docker build  -f test/Dockerfile  -t wordpress_rtf   .
 
 script:
-    - docker run  -v $(pwd):/data  nginx_trusty
-
-
-    - echo "==> Validating the test results..."
-    - grep '^Active connections' result-ubuntu14.04
-
+    - docker run  -v $(pwd):/data  wordpress_rtf
 
 notifications:
     webhooks: https://galaxy.ansible.com/api/v1/notifications/
