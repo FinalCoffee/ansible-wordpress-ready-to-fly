@@ -28,7 +28,7 @@ RUN sed -i -e 's/exit\s\s*101/exit 0/' /usr/sbin/policy-rc.d
 ENV PLAYBOOK setup.yml
 RUN ansible-playbook-wrapper -vvv --extra-vars "modify_hostname=false"
 
-ENV PLAYBOOK init-wordpress.yml
+#ENV PLAYBOOK init-wordpress.yml
 #RUN ansible-playbook-wrapper -vvv --extra-vars `cat /tmp/WP_HOSTNAME`
 
 EXPOSE 80
@@ -43,11 +43,14 @@ RUN echo "===> Installing curl for testing purpose..."  && \
     apt-get install -y -f curl
 
 VOLUME [ "/data" ]
+ENV    RESULT     /data/result-wordpress
 
 CMD service mysql start       && \
     service php7.0-fpm start  && \
     service nginx start       && \
+    sleep 10  &&  \
     IP=`head -n 1 /etc/hosts | sed 's/\t.*//'`                      && \
-    ansible-playbook-wrapper -vvv --extra-vars `echo hostname=$IP`  && \
+    curl --retry 5 --retry-max-time 120 -v  http://localhost:80  > $RESULT
+    #ansible-playbook-wrapper -vvv --extra-vars `echo hostname=$IP`  && \
     #curl -v http://localhost/  > /data/result  && \
-    tail -f /dev/null
+    #tail -f /dev/null
