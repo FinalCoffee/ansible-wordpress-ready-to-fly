@@ -1,0 +1,23 @@
+---
+# wordpress/meta/main.yml
+
+galaxy_info:
+    author: alan
+    description: Install and configure wordpress
+    license: MIT
+
+    # for the `playbook_dir` bug:
+    # https://github.com/ansible/ansible/issues/8317
+    min_ansible_version: 1.7.1
+
+    platforms:
+        - name: Ubuntu
+          versions:
+              - trusty
+    galaxy_tags:
+        - cloud
+        - system
+        - web
+        - nginx
+
+dependencies: []
