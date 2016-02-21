@@ -19,8 +19,8 @@ Vagrant.configure("2") do |config|
         node.vm.provision "shell", inline: <<-SHELL
             cd /vagrant
 
-            docker build  -f test/Dockerfile  -t wordpress   .
-            docker run -d --name wordpress  wordpress
+            docker build  -f test/Dockerfile  -t result-wordpress   .
+            docker run -d --name wordpress  result-wordpress
             sleep 60
 
             IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' wordpress) ; echo http://$IP:80/ > url
