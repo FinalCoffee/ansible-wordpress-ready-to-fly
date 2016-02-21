@@ -47,7 +47,7 @@ VOLUME [ "/data" ]
 CMD service mysql start       && \
     service php7.0-fpm start  && \
     service nginx start       && \
+    sleep 20  &&  \
     IP=`head -n 1 /etc/hosts | sed 's/\t.*//'`                      && \
     ansible-playbook-wrapper -vvv --extra-vars `echo hostname=$IP`  && \
-    #curl -v http://localhost/  > /data/result  && \
     tail -f /dev/null
