@@ -22,11 +22,11 @@ MAINTAINER William Yeh <william.pjyeh@gmail.com>
 # fix policy-rc.d for Docker
 # @see http://www.monblocnotes.com/node/2057
 # @see http://askubuntu.com/a/365912
-RUN sed -i -e 's/exit\s\s*101/exit 0/' /usr/sbin/policy-rc.d
+# RUN sed -i -e 's/exit\s\s*101/exit 0/' /usr/sbin/policy-rc.d
 
 
 ENV PLAYBOOK setup.yml
-RUN ansible-playbook-wrapper -vvv --extra-vars "modify_hostname=false"
+RUN ansible-playbook-wrapper
 
 #ENV PLAYBOOK init-wordpress.yml
 #RUN ansible-playbook-wrapper -vvv --extra-vars `cat /tmp/WP_HOSTNAME`
@@ -43,7 +43,6 @@ RUN echo "===> Installing curl for testing purpose..."  && \
     apt-get install -y -f curl
 
 VOLUME [ "/data" ]
-ENV    RESULT     /data/result-wordpress
 
 CMD service mysql start       && \
     service php7.0-fpm start  && \
