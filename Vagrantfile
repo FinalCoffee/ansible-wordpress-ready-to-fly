@@ -19,8 +19,15 @@ Vagrant.configure("2") do |config|
         node.vm.provision "shell", inline: <<-SHELL
             cd /vagrant
 
-            docker build  -f test/Dockerfile  -t result-wordpress   .
+            docker build  -f test/Dockerfile  -t wordpress   .
+            docker run -d --name wordpress  wordpress
+            sleep 60
 
+            IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' wordpress) ; echo http://$IP:80/ > url
+            cat url  |  xargs -t -n 1 curl -v -o result-wordpress
+
+            echo "==> Validating the test results..."
+            grep '<title>ANSIBLE_TEST' result-wordpress
         SHELL
     end
 
