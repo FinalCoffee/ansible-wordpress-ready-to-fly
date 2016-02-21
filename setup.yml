@@ -1,21 +1,11 @@
 - hosts: all
   become: true
 
-  roles:
-    - nginx
-
   handlers:
-    #- name: restart nginx
-    #  service: name=nginx state=restarted
-    #- name: reload nginx
-    #  service: name=nginx state=reloaded
-    #- name: stop nginx
-    #  service: name=nginx state=stopped
     - include: 'handlers/main.yml'
 
   vars_files:
     - 'defaults/main.yml'
-
 
   tasks:
     - include: 'tasks/main.yml'
