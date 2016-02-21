@@ -9,7 +9,7 @@ before_install:
 
 script:
     - docker run -d --name wordpress  wordpress
-    - grep 'result' result-wordpress
+    - grep '<title>' result-wordpress
     - echo "==> Done."
 
 notifications:
