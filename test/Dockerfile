@@ -47,10 +47,4 @@ ENV    RESULT     /data/result-wordpress
 
 CMD service mysql start       && \
     service php7.0-fpm start  && \
-    service nginx start       && \
-    sleep 10  &&  \
-    IP=`head -n 1 /etc/hosts | sed 's/\t.*//'`                      && \
-    curl --retry 5 --retry-max-time 120 -v  http://localhost:80  > $RESULT
-    #ansible-playbook-wrapper -vvv --extra-vars `echo hostname=$IP`  && \
-    #curl -v http://localhost/  > /data/result  && \
-    #tail -f /dev/null
+    service nginx start
