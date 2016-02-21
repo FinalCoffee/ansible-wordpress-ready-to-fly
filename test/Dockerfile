@@ -51,3 +51,9 @@ CMD service mysql start       && \
     ansible-playbook-wrapper -vvv --extra-vars `echo hostname=$IP`  && \
     #curl -v http://localhost/  > /data/result  && \
     tail -f /dev/null
+
+ENV    RESULT     /data/result-wordpress
+
+CMD  \
+     service nginx start   &&  sleep 10  &&  \
+     curl --retry 5 --retry-max-time 120 -v  http://localhost:80  > $RESULT
