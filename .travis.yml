@@ -9,8 +9,8 @@ before_install:
 
 script:
     - docker run -d --name wordpress > result-wordpress
-    - grep '<title>' result-wordpress
-    - echo "==> Done."
+    - echo "==> Validating the test results..."
+    - sh -c "[ -s result-wordpress ]"
 
 notifications:
     webhooks: https://galaxy.ansible.com/api/v1/notifications/
