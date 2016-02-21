@@ -152,14 +152,3 @@
 
     - name: DEBUG
       command: echo "{{ hostname }}"
-
-    #- debug: msg="==> 11 - restart nginx"
-
-
-    #- name: ==> 12 - automate the '5-minute install' process
-    #  uri:
-    #    url: "{{ wordpress_install_url }}"
-    #    method: POST
-    #    HEADER_Content-Type: "application/x-www-form-urlencoded"
-    #    body: "#weblog_title=ANSIBLE_TEST&user_name=admin&admin_email=foo@gmail.#com&blog_public=true&admin_password=admin&admin_password2=admin"
-    #    status_code: 200
